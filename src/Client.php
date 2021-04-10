@@ -5,6 +5,7 @@ namespace AgileGeeks\EPP\Eurid;
 use AgileGeeks\EPP\EPP_Client;
 use AgileGeeks\EPP\EPP_Exception;
 use AgileGeeks\EPP\Eurid\Frame;
+use AgileGeeks\EPP\Eurid\Frames\RegistrarInfo;
 use AgileGeeks\EPP\Eurid\Response;
 use AgileGeeks\EPP\Eurid\Frames\Greeting;
 use AgileGeeks\EPP\Eurid\Frames\Login;
@@ -304,6 +305,14 @@ class Client extends EPP_Client
         return $this->request($frame);
     }
 
+    function registrarInfo($type)
+    {
+        $this->debug("Gettin registrar info");
+        $command = new RegistrarInfo($type);
+        $frame = new Frame($command);
+        return $this->request($frame);
+    }
+
     function deleteHost($host)
     { }
 
@@ -377,7 +386,8 @@ class Client extends EPP_Client
         if (function_exists('log_message')) {
             log_message('error', vsprintf(array_shift($args), $args));
         } else {
-            fwrite(STDERR, vsprintf(array_shift($args), $args) . PHP_EOL);
+            $stderr = fopen('php://stderr', 'w');
+            fwrite($stderr, vsprintf(array_shift($args), $args) . PHP_EOL);
         }
     }
 
