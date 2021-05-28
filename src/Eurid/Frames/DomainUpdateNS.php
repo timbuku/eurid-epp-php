@@ -76,9 +76,9 @@ XML;
 
     private function detect_ip_version($ip)
     {
-        if (strpos($ip, '.') > 0) {
+        if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
             return 'v4';
-        } else if (strpos($ip, ':') > 0) {
+        } else if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
             return 'v6';
         } else {
             return false;
