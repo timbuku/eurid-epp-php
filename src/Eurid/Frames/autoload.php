@@ -13,4 +13,5 @@ require_once (__DIR__.'/DomainRenew.php');
 require_once (__DIR__.'/DomainDelete.php');
 require_once (__DIR__.'/DomainTransfer.php');
 require_once (__DIR__.'/CheckBalance.php');
+require_once (__DIR__.'/RegistrarInfo.php');
 require_once (__DIR__.'/DomainUpdateDNSSEC.php');

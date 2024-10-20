@@ -20,6 +20,7 @@ use AgileGeeks\EPP\Eurid\Frames\DomainRenew;
 use AgileGeeks\EPP\Eurid\Frames\DomainDelete;
 use AgileGeeks\EPP\Eurid\Frames\DomainTransfer;
 use AgileGeeks\EPP\Eurid\Frames\CheckBalance;
+use AgileGeeks\EPP\Eurid\Frames\RegistrarInfo;
 use AgileGeeks\EPP\Eurid\Frames\DomainUpdateDNSSEC;
 
 require_once(__DIR__ . '/Eurid/Frames/autoload.php');
@@ -104,6 +105,14 @@ class Client extends EPP_Client
     {
         $this->debug("getting balance info");
         $command = new CheckBalance();
+        $frame = new Frame($command);
+        return $this->request($frame);
+    }
+
+    function registrarInfo($type)
+    {
+        $this->debug("Getting registrar info");
+        $command = new RegistrarInfo($type);
         $frame = new Frame($command);
         return $this->request($frame);
     }
