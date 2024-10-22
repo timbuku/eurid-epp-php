@@ -71,6 +71,24 @@ XML;
         }
         $result->type = $extension_infData_node->getElementsByTagName('type')->item(0)->firstChild->textContent;
 
+        if ($extension_infData_node->getElementsByTagName('whoisEmail')->length > 0) {
+            $result->whois_email = $extension_infData_node->getElementsByTagName('whoisEmail')->item(0)->firstChild->textContent;
+        } else {
+            $result->whois_email = null;
+        }
+
+        if ($extension_infData_node->getElementsByTagName('vat')->length > 0) {
+            $result->vat = $extension_infData_node->getElementsByTagName('vat')->item(0)->firstChild->textContent;
+        } else {
+            $result->vat = null;
+        }
+
+        if ($extension_infData_node->getElementsByTagName('lang')->length > 0) {
+            $result->lang = $extension_infData_node->getElementsByTagName('lang')->item(0)->firstChild->textContent;
+        } else {
+            $result->lang = null;
+        }
+
         if ($extension_infData_node->getElementsByTagName('naturalPerson')->length > 0) {
             $result->natural_person = $extension_infData_node->getElementsByTagName('naturalPerson')->item(0)->firstChild->textContent;
         } else {

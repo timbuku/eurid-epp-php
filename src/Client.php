@@ -390,7 +390,8 @@ class Client extends EPP_Client
         if (function_exists('log_message')) {
             log_message('error', vsprintf(array_shift($args), $args));
         } else {
-            fwrite(STDERR, vsprintf(array_shift($args), $args) . PHP_EOL);
+            $stderr = fopen('php://stderr', 'w');
+            fwrite($stderr, vsprintf(array_shift($args), $args) . PHP_EOL);
         }
     }
 
